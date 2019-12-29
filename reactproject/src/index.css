@@ -1,4 +1,6 @@
 body {
+  background: url(http://www.script-tutorials.com/demos/360/images/stars.png) top center #000;
+
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +12,29 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.people{
+  
+  justify-content: space-between;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+.card{
+  background-color: rgba(211, 211, 211, 0.116);
+  flex-flow: row;
+  justify-content: flex-start;
+  transition: all 500ms;
+}
+.card:hover{
+  background-color: rgba(211, 211, 211, 0.587);
+}
+
+.example-appear {
+  opacity: 0.01;
+}
+
+.example-appear.example-appear-active {
+  opacity: 1;
+  transition: opacity 3s ;
 }
