@@ -1,7 +1,7 @@
 import React from "react";
 import "./Main.css";
-
 export default props => (
+  console.log(props),
   (
     <div className="jumbotron jumbotron-fluid">
       <button
@@ -17,7 +17,7 @@ export default props => (
       <div className="row container">
         <h1 className="display-1 col-12">{props.Props[0].name}</h1>
         <img
-          src={`https://starwars-visualguide.com/assets/img/${props.Repos}/${props.imgUrl}.jpg`}
+          src={`https://starwars-visualguide.com/assets/img/characters/${props.imgUrl}.jpg`}
           alt=""
         />
         <div className='col-6 about'>

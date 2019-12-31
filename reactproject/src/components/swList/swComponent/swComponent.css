@@ -1,18 +1,16 @@
 .component {
-    
-    padding: 14px;
-    text-align: center;
-   
+  padding: 2px;
+  text-align: center;
 }
-.col{
-    color: rgb(227, 238, 74);
+.col {
+  color: rgb(227, 238, 74);
 }
-ul{
-    list-style: none;
-    padding: 4px;
-    margin: 0;
+ul {
+  list-style: none;
+  padding: 4px;
+  margin: 0;
 }
-.video{
-    position: absolute;
-    top: -500px;
+.video {
+  position: absolute;
+  top: -500px;
 }

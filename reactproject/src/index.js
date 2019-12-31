@@ -1,5 +1,5 @@
 import React from "react";
-import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
+// import CSSTransitionGroup from "react-transition-group/CSSTransitionGroup";
 import ReactDOM from "react-dom";
 import "./index.css";
 import Waiting from "./components/waiting/waiting";
@@ -14,11 +14,46 @@ class App extends React.Component {
     people: [],
     persona: [],
     imgUrl: 1,
-    mainWindow: false
+    Repos : 'planets',
+    mainWindow: false,
+    isDisabled: false
   };
+  getRep = event => {
+    console.log(event.target.value)
+    this.state.people = [];
+    this.setState({
+      Repos: event.target.value,
+      mainWindow: false
+    })
+  }
+  NextPage = event => {
+    let url = `https://swapi.co/api/${this.state.Repos}${event.target.value}`;
+    console.log(event.target.disabled)
+    this.setState({
+      isDisabled:!this.state.isDisabled
+    })
 
-  async componentDidMount() {
-    let url = `https://swapi.co/api/people`;
+    fetch(url)
+      .then(responce => {
+        return responce.json();
+      })
+      .then(data => {
+        console.log(data.next)
+        let NewList = [];
+        let oldList = this.state.people.slice();
+        NewList = oldList.concat(data.results) 
+console.log(NewList)
+        this.setState({
+          people: NewList
+        });
+      });
+      console.log(this.state.people)
+  };
+  async componentWillMount() {
+    if (this.state.Repos === 'characters') {
+      this.state.Repos = 'people'
+    }
+    let url = `https://swapi.co/api/${this.state.Repos}`;
     // ;
     const response = await fetch(url);
     const people = await response.json();
@@ -31,7 +66,7 @@ class App extends React.Component {
     this.setState({
       people: people.results
     });
-    console.log(this.state.people);
+    
   }
   GetResponse = () => {
     this.setState({
@@ -55,43 +90,35 @@ class App extends React.Component {
       mainWindow: false
     });
   };
+
   render() {
-    console.log(this.state.imgUrl);
+    
     return (
       <Fragment>
-        <CSSTransitionGroup
-          transitionName="example"
-          transitionAppear={true}
-          transitionAppearTimeout={3000}
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={1300}
-        >
-          <div className="col d-flex people">
-            {this.state.responsed ? (
-              <Waiting GetResponse={this.GetResponse} />
-            ) : (
-              <SwList
-                People={this.state.people}
-                GetPerson={this.GetPerson}
-              ></SwList>
-            )}
-          </div>
-          {this.state.mainWindow ? (<CSSTransitionGroup
-          transitionName="example"
-          transitionAppear={true}
-          transitionAppearTimeout={3000}
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={1300}
-        >
-            <Main
-              imgUrl={this.state.imgUrl}
-              Props={this.state.persona}
-              GetWindow={this.GetWindow}
-            ></Main></CSSTransitionGroup>
+        <div className="d-flex col people">
+          {this.state.responsed ? (
+            <Waiting GetResponse={this.GetResponse} />
           ) : (
-            <div></div>
+            <SwList
+              People={this.state.people}
+              GetPerson={this.GetPerson}
+                NextPage={this.NextPage}
+                getRep={this.getRep}
+                isDisabled={this.state.isDisabled}
+            ></SwList>
           )}
-        </CSSTransitionGroup>
+        </div>
+
+        {this.state.mainWindow ?  (
+          <Main
+            Repos={this.state.Repos}
+            imgUrl={this.state.imgUrl}
+            Props={this.state.persona}
+            GetWindow={this.GetWindow}
+          ></Main>
+        ) : (
+          <div></div>
+        )}
       </Fragment>
     );
   }

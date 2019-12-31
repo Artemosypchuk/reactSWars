@@ -1,0 +1,21 @@
+.true{
+    position: absolute;
+    top: 0;
+    
+}
+.close{
+    position: relative;
+    top:0px;
+    right: 0px;
+}
+.closed{
+    background-color: red;
+    width:32px;
+    height: 32px;
+    
+}
+.about{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+}

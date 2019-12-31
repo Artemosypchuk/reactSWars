@@ -10,7 +10,7 @@ class SwComponent extends React.Component {
   render() {
     const { name } = this.state;
     return (
-      <div onClick={this.props.GetPerson} className="card col-1">
+      <div onClick={this.props.GetPerson} className="card">
         <div className="component">
           <ul>
             <li>{name}</li>

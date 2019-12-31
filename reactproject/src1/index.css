@@ -14,8 +14,8 @@ code {
     monospace;
 }
 .people{
-  flex-flow: row wrap;
-  justify-content: start;
+  
+  justify-content: space-between;
   cursor: pointer;
   margin: 0;
   padding: 0;
@@ -25,8 +25,6 @@ code {
   flex-flow: row;
   justify-content: flex-start;
   transition: all 500ms;
-
-  
 }
 .card:hover{
   background-color: rgba(211, 211, 211, 0.587);
@@ -39,7 +37,4 @@ code {
 .example-appear.example-appear-active {
   opacity: 1;
   transition: opacity 3s ;
-}
-.more{
-  align-self: flex-end;
 }
